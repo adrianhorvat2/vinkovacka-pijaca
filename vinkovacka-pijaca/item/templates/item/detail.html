@@ -1,0 +1,71 @@
+{% extends 'home/base.html' %}
+
+{% block title %}{{ item.naziv }}{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-5 gap-6">
+    <div class="col-span-3">
+        <img src="{{ item.slika.url }}" class="rounded-xl">
+    </div>
+
+    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+        <h1 class="mb-6 text-3xl">{{ item.naziv }}</h1>
+        <p class="text-gray-500"><strong>Cijena: </strong>EUR {{ item.cijena }}</p>
+        <p class="text-gray-500"><strong>Prodavač: </strong>{{ item.created_by.username }}</p>
+    
+        {% if item.opis %}
+            <p class="text-gray-700">
+                <strong class="text-gray-500">Opis:</strong><br>
+                {{ item.opis }}
+            </p>
+        {% endif %}
+        
+        {% if request.user == item.created_by %}
+        <br>
+                <p>Uredite vaš proizvod:</p>
+
+                <a href="{% url 'item:edit' item.id %}" id="inb" class="inline-block mt-6 px-6 py-3 text-lg font-semibold text-white rounded-xl">Uredi</a>
+                <a href="{% url 'item:delete' item.id %}" class="inline-block mt-6 ml-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700">Ukloni</a>
+        {% elif request.user.is_superuser %}
+        <br>
+                <p>Ovaj proizvod prodaje: <strong>{{ item.created_by.username }}</strong></p>
+
+                <a href="{% url 'item:delete' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700">Ukloni</a>
+            </div>
+        {% else %}
+            <a href="{% url 'conversation:new' item.id %}" id="inb" class="inline-block mt-6 px-6 py-3 text-lg font-semibold text-white rounded-xl">Kontaktirajte prodavača</a>
+            
+            <form action="{% url 'item:toggle_like' item.id%}" method="post" id="inb" class="inline-block text-lg ml-6 font-semibold text-white rounded-xl">
+                {% if liked %}
+                    <input class="px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700" type="submit" value="Ukloni iz košarice">
+                {% else %}
+                    <input id="inb" class="px-6 py-3 text-lg font-semibold text-white rounded-xl" type="submit" value="Dodaj u košaricu">
+                {% endif %}
+                {% csrf_token %}
+            </form>
+            
+        {% endif %}
+    </div>
+</div>
+
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center"><b>Povezani proizvodi</b></h2>
+
+    <div class="grid grid-cols-3 gap-3">
+        {% for item in related_items %}
+            <div class="hover:scale-105 ease-in-out duration-300">
+                <a href="{% url 'item:detail' item.id %}">
+                    <div>
+                        <img src="{{ item.slika.url }}" class="rounded-t-xl">
+                    </div>
+
+                    <div class="p-6 bg-white rounded-b-xl">
+                        <h2 class="text-2xl">{{ item.naziv }}</h2>
+                        <p class="text-gray-500">Cijena: EUR {{ item.cijena }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
