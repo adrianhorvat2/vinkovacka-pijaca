@@ -4,27 +4,27 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Category(models.Model):
-    naziv = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
 
     class Meta:
-        ordering = ('naziv',)
+        ordering = ('title',)
         verbose_name_plural = 'Categories'
 
     def __str__(self):
-        return self.naziv
+        return self.title
     
 class Item(models.Model):
-    kategorija = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)
-    naziv = models.CharField(max_length=255)
-    opis = models.TextField(blank=True, null=True)
-    cijena = models.FloatField()
-    slika = models.ImageField(upload_to='item_images', blank=True, null=True)
-    #dostupno = models.BooleanField(default=True)
+    category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    price = models.FloatField()
+    image = models.ImageField(upload_to='item_images', blank=True, null=True)
+    #avalaible = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, related_name='items', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.naziv
+        return self.title
     
     def liked_by(self, user):
         if isinstance(user, User):

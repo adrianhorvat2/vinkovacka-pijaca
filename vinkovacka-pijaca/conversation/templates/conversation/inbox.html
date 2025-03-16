@@ -10,14 +10,14 @@
         <a href="{% url 'conversation:detail' conversation.id %}">
             <div class="p-6 flex bg-gray-100 rounded-xl">
                 <div class="pr-6">
-                    <img src="{{ conversation.item.slika.url }}" class="w-20 rounded-xl">
+                    <img src="{{ conversation.item.image.url }}" class="w-20 rounded-xl">
                 </div>
 
                 <div>
                     {% for member in conversation.members.all %}
                         {% if member != request.user %}
                             <p class="mb-4"><strong>{{ member.username }}</strong> | {{ conversation.modified_at|date:"j. n. Y, H:i" }}</p>
-                            <p>{{ conversation.item.naziv }}</p>
+                            <p>{{ conversation.item.title }}</p>
                         {% endif %}
                     {% endfor %}
                 </div>

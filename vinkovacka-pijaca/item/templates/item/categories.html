@@ -16,7 +16,7 @@
                 <div>
                     <a href="{% url 'item:items' %}?category={{ category.id }}">
                         <div class="p-6 bg-white rounded-xl">
-                            <h2 class="text-2xl">{{ category.naziv }}</h2>
+                            <h2 class="text-2xl">{{ category.title }}</h2>
                             <a href="{% url 'item:delete_category' category.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl hover:bg-red-700">Ukloni</a>
                         </div>
                     </a>

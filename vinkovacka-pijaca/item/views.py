@@ -15,10 +15,10 @@ def items(request):
     items = Item.objects.all()
 
     if category_id:
-        items = items.filter(kategorija_id=category_id)
+        items = items.filter(category_id=category_id)
 
     if query:
-        items = items.filter(Q(naziv__icontains=query) | Q(opis__icontains=query))
+        items = items.filter(Q(title__icontains=query) | Q(description__icontains=query))
 
     context = {
         'items': items,
@@ -31,7 +31,7 @@ def items(request):
 
 def detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
-    related_items = Item.objects.filter(kategorija=item.kategorija).exclude(pk=pk)[0:3]
+    related_items = Item.objects.filter(category=item.category).exclude(pk=pk)[0:3]
     liked = item.liked_by(request.user)
 
     context = {

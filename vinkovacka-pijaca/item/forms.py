@@ -4,22 +4,22 @@ from .models import Item, Category
 class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('kategorija', 'naziv', 'opis', 'cijena', 'slika',)
+        fields = ('category', 'title', 'description', 'price', 'image',)
         widgets = {
-            'kategorija': forms.Select(attrs={
+            'category': forms.Select(attrs={
                 'class': 'w-full py-2 px-3 rounded-xl border'
             }),
-            'naziv': forms.TextInput(attrs={
+            'title': forms.TextInput(attrs={
                 'class': 'w-full py-2 px-3 rounded-xl border'
             }),
-            'opis': forms.Textarea(attrs={
+            'description': forms.Textarea(attrs={
                 'class': 'w-full py-2 px-3 rounded-xl border'
             }),
-            'cijena': forms.TextInput(attrs={
+            'price': forms.TextInput(attrs={
                 'class': 'w-full py-2 px-3 rounded-xl border',
                 'placeholder': 'U EUR'
             }),
-            'slika': forms.FileInput(attrs={
+            'image': forms.FileInput(attrs={
                 'class': 'w-full py-4 px-4 rounded-xl border'
             })
         }
@@ -27,18 +27,18 @@ class NewItemForm(forms.ModelForm):
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('naziv', 'opis', 'cijena', 'slika',)
+        fields = ('title', 'description', 'price', 'image',)
         widgets = {
-            'naziv': forms.TextInput(attrs={
+            'title': forms.TextInput(attrs={
                 'class': 'w-full py-2 px-3 rounded-xl border'
             }),
-            'opis': forms.Textarea(attrs={
+            'description': forms.Textarea(attrs={
                 'class': 'w-full py-2 px-3 rounded-xl border'
             }),
-            'cijena': forms.TextInput(attrs={
+            'price': forms.TextInput(attrs={
                 'class': 'w-full py-2 px-3 rounded-xl border'
             }),
-            'slika': forms.FileInput(attrs={
+            'image': forms.FileInput(attrs={
                 'class': 'w-full py-4 px-4 rounded-xl border'
             })
         }
@@ -46,9 +46,9 @@ class EditItemForm(forms.ModelForm):
 class NewCategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ('naziv',)
+        fields = ('title',)
         widgets = {
-            'naziv': forms.TextInput(attrs={
+            'title': forms.TextInput(attrs={
                 'class': 'w-full py-2 px-3 rounded-xl border'
             })
         }

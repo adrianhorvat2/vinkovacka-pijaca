@@ -17,7 +17,7 @@
                     <div>
                         <a href="{% url 'item:items' %}?category={{ category.id }}">
                             <div class="p-6 bg-white rounded-xl">
-                                <h2 class="text-2xl">{{ category.naziv }}</h2>
+                                <h2 class="text-2xl">{{ category.title }}</h2>
                                 <p class="text-gray-500">{{ category.items.count }} proizvoda</p>
                             </div>
                         </a>
@@ -33,12 +33,12 @@
                 <div class="hover:scale-105 ease-in-out duration-300">
                     <a href="{% url 'item:detail' item.id %}">
                         <div>
-                            <img src="{{ item.slika.url }}" class="rounded-t-xl">
+                            <img src="{{ item.image.url }}" class="rounded-t-xl">
                         </div>
 
                         <div class="p-6 bg-white rounded-b-xl">
-                            <h2 class="text-2xl">{{ item.naziv }}</h2>
-                            <p class="text-gray-500">Cijena: EUR {{ item.cijena }}</p>
+                            <h2 class="text-2xl">{{ item.title }}</h2>
+                            <p class="text-gray-500">Cijena: EUR {{ item.price }}</p>
                         </div>
                     </a>
                 </div>

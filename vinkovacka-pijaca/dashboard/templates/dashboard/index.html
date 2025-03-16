@@ -15,12 +15,12 @@
                     <div class="hover:scale-105 ease-in-out duration-300">
                         <a href="{% url 'item:detail' item.id %}">
                             <div>
-                                <img src="{{ item.slika.url }}" class="rounded-t-xl">
+                                <img src="{{ item.image.url }}" class="rounded-t-xl">
                             </div>
 
                             <div class="p-6 bg-white rounded-b-xl">
-                                <h2 class="text-2xl">{{ item.naziv }}</h2>
-                                <p class="text-gray-500">Cijena: {{ item.cijena }}</p>
+                                <h2 class="text-2xl">{{ item.title }}</h2>
+                                <p class="text-gray-500">Cijena: {{ item.price }}</p>
                                 <p class="text-gray-200">PDV uklj.</p>
                             </div>
                         </a>
@@ -31,12 +31,12 @@
                     <div class="hover:scale-105 ease-in-out duration-300">
                         <a href="{% url 'item:detail' item.id %}">
                             <div>
-                                <img src="{{ item.slika.url }}" class="rounded-t-xl">
+                                <img src="{{ item.image.url }}" class="rounded-t-xl">
                             </div>
 
                             <div class="p-6 bg-white rounded-b-xl">
-                                <h2 class="text-2xl">{{ item.naziv }}</h2>
-                                <p class="text-gray-500">Cijena: {{ item.cijena }}</p>
+                                <h2 class="text-2xl">{{ item.title }}</h2>
+                                <p class="text-gray-500">Cijena: {{ item.price }}</p>
                                 <p class="text-gray-200">PDV uklj.</p>
                             </div>
                         </a>

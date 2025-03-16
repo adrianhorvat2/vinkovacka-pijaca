@@ -5,9 +5,9 @@ from .models import ConversationMessage
 class ConversationMessageForm(forms.ModelForm):
     class Meta:
          model = ConversationMessage
-         fields = ('sadržaj',)
+         fields = ('content',)
          widgets = {
-              'sadržaj': forms.Textarea(attrs={
+              'content': forms.Textarea(attrs={
                    'class': 'w-full py-4 px-6 rounded-xl border'
               })
          }
